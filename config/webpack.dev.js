@@ -9,18 +9,6 @@ import {
 import webpackCommon from './webpack.common';
 
 export default webpackMerge(webpackCommon, {
-    entry: [
-        'react-hot-loader/patch',
-        // activate HMR for React
-
-        'webpack-dev-server/client',
-        // bundle the client for webpack-dev-server
-        // and connect to the provided endpoint
-
-        'webpack/hot/only-dev-server',
-
-        './index.js'
-    ],
     output: {
         filename: '[name].js',
         chunkFilename: '[id].chunk.js',
@@ -32,17 +20,20 @@ export default webpackMerge(webpackCommon, {
     devServer: {
         host: '0.0.0.0',
         port: 3000,
-        inline: true,
+        inline: false,
         hot: true,
         contentBase: resolve(__dirname, '../src'),
         publicPath: '/',
         historyApiFallback: true,
+        // proxy: {
+        //     '/api/*': {
+        //         target: 'http://127.0.0.1:9000'
+        //     }
+        // }
     },
     plugins: [
         new HtmlWebpackPlugin({
             template: resolve(__dirname, '../src/index.html'),
-            path: resolve(__dirname, '../src'),
-            filename: 'index.html'
         }),
         // new webpack.DefinePlugin({
         //     'process.env': {

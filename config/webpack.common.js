@@ -1,4 +1,5 @@
 import webpack from 'webpack';
+import autoprefixer from 'autoprefixer';
 // import ExtractTextPlugin from 'extract-text-webpack-plugin';
 import {
     resolve,
@@ -23,17 +24,41 @@ export default {
             },
             {
                 test: /\.css$/,
-                use: [
+                // loader: 'style-loader!css-loader?modules!postcss-loader',
+                loaders: [
                     'style-loader',
-                    'css-loader?modules',
-                    'postcss-loader',
-                ]
+                    {
+                        loader: 'css-loader',
+                        query: {
+                            sourceMap: true,
+                            module: true,
+                            localIdentName: '[local]___[hash:base64:5]'
+                        }
+                    },
+                    // {
+                    //     loader: 'sass-loader',
+                    //     query: {
+                    //         outputStyle: 'expanded',
+                    //         sourceMap: true
+                    //     }
+                    // },
+                    'postcss-loader'
+                ],
+                exclude: /node_modules/
             }
         ]
     },
 
     plugins: [
         new webpack.HotModuleReplacementPlugin(),
-        new webpack.NamedModulesPlugin()
+        new webpack.NamedModulesPlugin(),
+        new webpack.optimize.CommonsChunkPlugin({
+            name: ['app', 'vendor', 'polyfills']
+        }),
+        new webpack.LoaderOptionsPlugin({
+            options: {
+                postcss: [autoprefixer]
+            }
+        })
     ]
 }

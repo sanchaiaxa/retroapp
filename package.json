@@ -1,15 +1,17 @@
 {
-  "name": "react-redux",
+  "name": "blog-frontend",
   "version": "1.0.0",
   "description": "Example React project",
   "main": "index.js",
   "scripts": {
     "start": "nodemon -r babel-register -r babel-polyfill ./node_modules/webpack-dev-server/bin/webpack-dev-server.js",
-    "dev": "webpack-dev-server"
+    "dev": "webpack-dev-server",
+    "test": "nodemon --exec babel-node ./node_modules/webpack-dev-server/bin/webpack-dev-server.js"
   },
   "author": "Joe Walker",
   "license": "ISC",
   "devDependencies": {
+    "autoprefixer": "^6.7.7",
     "babel-cli": "^6.23.0",
     "babel-core": "^6.23.1",
     "babel-loader": "^6.3.2",
@@ -33,6 +35,7 @@
   "dependencies": {
     "babel-runtime": "^6.23.0",
     "react": "^15.4.2",
-    "react-dom": "^15.4.2"
+    "react-dom": "^15.4.2",
+    "redux": "^3.6.0"
   }
 }
