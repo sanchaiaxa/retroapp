@@ -19,7 +19,7 @@ render(AppComponent);
 
 // Hot Module Replacement API
 if (module.hot) {
-  module.hot.accept('./components/app/app.component', () => {
+  module.hot.accept('./components/app/AppComponent', () => {
     render(AppComponent)
   });
 }
