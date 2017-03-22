@@ -1,0 +1,16 @@
+version: 2
+
+  service:
+    rectroApp:
+      image: rectroApp:latest
+      container_name: rectroApp
+      build:
+        context: .
+        dockerfile: Dockerfile
+      ports:
+        - 3000:3000
+      # restart: always
+      # links:
+      #   - ecbr_db:mongo
+      environment:
+        NODE_ENV: develop

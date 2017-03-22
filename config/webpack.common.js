@@ -10,7 +10,7 @@ export default {
     entry: {
         polyfills: resolve(__dirname, '../src/polyfills.js'),
         vendor: resolve(__dirname, '../src/vendor.js'),
-        app: resolve(__dirname, '../src/index.js')
+        app: resolve(__dirname, '../src/main.jsx')
     },
     resolve: {
         extensions: ['.js', '.jsx', '.json']
@@ -18,7 +18,7 @@ export default {
     module: {
         rules: [
             {
-                test: /\.js$/,
+                test: /\.js$|\.jsx$/,
                 loader: 'babel-loader',
                 exclude: /node_modules/
             },
@@ -30,6 +30,7 @@ export default {
                     {
                         loader: 'css-loader',
                         query: {
+                            context: '/',
                             sourceMap: true,
                             module: true,
                             localIdentName: '[local]___[hash:base64:5]'
